@@ -1,3 +1,7 @@
+![sensu](https://raw.github.com/sensu/sensu/master/sensu-logo.png)
+
+[![Build Status](https://img.shields.io/travis/sensu/sensu-omnibus.svg)](https://travis-ci.org/sensu/sensu-omnibus)
+[![MIT Licensed](https://img.shields.io/github/license/sensu/sensu.svg)](https://raw.githubusercontent.com/sensu/sensu-omnibus/master/MIT-LICENSE.txt)
 [![Join the chat at https://slack.sensu.io/](https://slack.sensu.io/badge.svg)](https://slack.sensu.io/)
 
 :warning: **ANNOUNCEMENT - Sensu 1.x has reached End-Of-Life (December 31st, 2019)**
@@ -12,8 +16,7 @@ Sensu 1.x has been superseded by [Sensu Go](https://github.com/sensu/sensu-go).
 As always, we want to hear from the Community and please reach out on
 Slack or Discourse if you have any questions or concerns.
 
-Sensu Omnibus project
-=====================
+# Sensu Omnibus project
 
 This project uses [Chef's Omnibus toolchain](https://github.com/chef/omnibus) to
 create full-stack platform-specific [Sensu](https://sensuapp.org) packages.
