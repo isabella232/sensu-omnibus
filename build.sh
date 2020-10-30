@@ -27,8 +27,8 @@ if [ "$(git describe --tags --exact-match "$OMNIBUS_COMMIT")" ]; then
     if [[ "x$TRAVIS_WAIT" == "x" ]] ; then
         bundle exec rake kitchen:default-"$BUILD_PLATFORM"
     else
-        source "$TRAVIS_BUILD_DIR/.travis/functions.sh"
-        travis_wait "$TRAVIS_WAIT" bundle exec rake kitchen:default-"$BUILD_PLATFORM"
+        travis-wait-enhanced --interval=1m --timeout=${TRAVIS_WAIT}m \
+            -- bundle exec rake kitchen:default-"$BUILD_PLATFORM"
     fi
 else
     echo "!!! Commit ${OMNIBUS_COMMIT} is not tagged, exiting."
