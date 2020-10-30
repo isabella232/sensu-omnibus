@@ -13,7 +13,7 @@ if debian_8
   execute "cat /etc/apt/sources.list.d/*"
 end
 
-if windows?
+if node["platform"] == "windows"
   execute "curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz"
   execute "curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig"
   execute "pacman-key --verify msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig"
