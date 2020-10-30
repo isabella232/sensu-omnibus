@@ -4,6 +4,26 @@
 #
 # Copyright (c) 2016 Sensu, All Rights Reserved.
 
+debian_8 = node["platform"] == "debian" && Gem::Version.new(node["platform_version"]) == Gem::Version.new(8)
+
+if debian_8
+  execute "list_apt_dir" do
+    command("ls /etc/apt/")
+  end
+
+  execute "show_sources_list" do
+    command("cat /etc/apt/sources.list")
+  end
+
+  execute "list_sources_dir" do
+    command("ls /etc/apt/sources.list.d")
+  end
+
+  execute "show_all_sources_list" do
+    command("cat /etc/apt/sources.list.d/*")
+  end
+end
+
 include_recipe 'chef-sugar'
 
 if windows?
@@ -209,27 +229,8 @@ execute "populate_omnibus_cache_s3" do
   not_if { node["omnibus_sensu"]["publishers"]["s3"].any? {|k,v| v.nil? } }
 end
 
-debian_8 = node["platform"] == "debian" && Gem::Version.new(node["platform_version"]) == Gem::Version.new(8)
 debian_9_or_greater = node["platform"] == "debian" && Gem::Version.new(node["platform_version"]) >= Gem::Version.new(9)
 ubuntu_1804_or_greater = node["platform"] == "ubuntu" && Gem::Version.new(node["platform_version"]) >= Gem::Version.new("18.04")
-
-if debian_8
-  execute "list_apt_dir" do
-    command("ls /etc/apt/")
-  end
-
-  execute "show_sources_list" do
-    command("cat /etc/apt/sources.list")
-  end
-
-  execute "list_sources_dir" do
-    command("ls /etc/apt/sources.list.d")
-  end
-
-  execute "show_all_sources_list" do
-    command("cat /etc/apt/sources.list.d/*")
-  end
-end
 
 if debian_9_or_greater || ubuntu_1804_or_greater
   # replace omnibus-toolchain tar with system tar as dpkg-deb requires --clamp-mtime now
