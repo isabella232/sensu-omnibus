@@ -100,7 +100,7 @@ platforms:
             delete_on_termination: true
   - name: debian-8
     run_list:
-      - omnibus_sensu::fixes
+      - fixes::debian-8
       - apt::default
     driver:
       block_device_mappings:
@@ -147,9 +147,7 @@ platforms:
     transport:
       name: winrm
       elevated: true
-    run_list:
-      - omnibus_sensu::fixes
-      - seven_zip::default
+    run_list: seven_zip::default
   - name: windows-2012-r2-i386
     driver:
       image_id: ami-6f64f00f
@@ -159,9 +157,7 @@ platforms:
     transport:
       name: winrm
       elevated: true
-    run_list:
-      - omnibus_sensu::fixes
-      - seven_zip::default
+    run_list: seven_zip::default
 suites:
   - name: default
     run_list:

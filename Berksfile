@@ -1,5 +1,6 @@
 source 'https://supermarket.chef.io'
 
+cookbook 'fixes', path: 'site-cookbooks/fixes'
 cookbook 'omnibus_sensu', path: 'site-cookbooks/omnibus_sensu'
 cookbook 'omnibus', git: 'https://github.com/sensu/omnibus-cookbook.git', ref: 'sensu'
 cookbook 'mingw', git: 'https://github.com/sensu/mingw-cookbook.git', ref: 'sensu'

@@ -4,30 +4,6 @@
 #
 # Copyright (c) 2016 Sensu, All Rights Reserved.
 
-debian_8 = node["platform"] == "debian" && Gem::Version.new(node["platform_version"]) == Gem::Version.new(8)
-
-if debian_8
-  execute "ls /etc/apt/" do
-    compile_time true
-    action :run
-  end
-
-  execute "cat /etc/apt/sources.list" do
-    compile_time true
-    action :run
-  end
-
-  execute "ls /etc/apt/sources.list.d" do
-    compile_time true
-    action :run
-  end
-
-  execute "cat /etc/apt/sources.list.d/*" do
-    compile_time true
-    action :run
-  end
-end
-
 include_recipe 'chef-sugar'
 
 if windows?
