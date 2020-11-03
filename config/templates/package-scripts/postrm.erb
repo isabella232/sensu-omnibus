@@ -36,9 +36,6 @@ purge_sensu_files()
   if [ -d /opt/sensu ]; then
     rm -r /opt/sensu
   fi
-  if [ -d /var/cache/sensu ]; then
-    rm -rf /var/cache/sensu
-  fi
 }
 purge_sensu_unit_files()
 {

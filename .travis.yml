@@ -1,4 +1,5 @@
-sudo: false
+os: linux
+dist: xenial
 language: ruby
 rvm: 2.4.1
 bundler_args: "--without='vagrant'"
@@ -9,12 +10,16 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_d8b89d758c52_key -iv $encrypted_d8b89d758c52_iv
   -in .travis/sensu-omnibus-artifact-builder.pem.enc -out .travis/sensu-omnibus-artifact-builder.pem
   -d
+- |
+  wget -qO- "https://github.com/crazy-max/travis-wait-enhanced/releases/download/v1.2.0/travis-wait-enhanced_1.2.0_linux_x86_64.tar.gz" | tar -zxvf - travis-wait-enhanced
+  mv travis-wait-enhanced /home/travis/bin/
+  travis-wait-enhanced --version
 script: ./build.sh
 branches:
   only:
   - "/^v\\d.*\\.\\d.*\\.\\d.*-.*\\d$/"
 env:
-  matrix:
+  jobs:
   - BUILD_PLATFORM=debian-9
   - BUILD_PLATFORM=debian-8
   - BUILD_PLATFORM=centos-7
